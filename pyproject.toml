@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "gamemod"
+version = "0.1.0"
+description = "An agent-based game automation system."
+authors = ["DARK20050101 <your_email@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+opencv-python = "*"
+pydantic = "*"
+loguru = "*"
+aiohttp = "*"
+numpy = "*"
+pillow = "*"
+pyyaml = "*"
+typer = "*"
+rich = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+pytest-cov = "*"
+ruff = "*"
+mypy = "*"
+pre-commit = "*"
