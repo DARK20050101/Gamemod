@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from game_automation.agents.base import BaseAgent
 from game_automation.core.config import AppConfig
 from game_automation.core.device import Device
@@ -14,7 +12,7 @@ from game_automation.models.result import AgentResult, ResultStatus
 class ExecutionAgent(BaseAgent):
     """Translates Action objects into device commands."""
 
-    def __init__(self, config: Optional[AppConfig] = None, device: Optional[Device] = None) -> None:
+    def __init__(self, config: AppConfig | None = None, device: Device | None = None) -> None:
         super().__init__(config=config)
         self.device = device or Device(serial=self.config.device.serial)
 

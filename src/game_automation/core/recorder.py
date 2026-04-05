@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import time
 from pathlib import Path
-from typing import List
 
 import yaml
 
@@ -20,7 +18,7 @@ class Recorder:
     def __init__(self, device_serial: str, output_path: str = "recording.yaml") -> None:
         self.device_serial = device_serial
         self.output_path = Path(output_path)
-        self._actions: List[Action] = []
+        self._actions: list[Action] = []
 
     def start(self) -> None:
         """Start an interactive recording session (stub – extend with real ADB input monitor)."""

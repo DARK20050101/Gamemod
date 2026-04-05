@@ -3,16 +3,19 @@
 from __future__ import annotations
 
 import subprocess
-from typing import List
+from typing import TYPE_CHECKING
 
 from game_automation.core.logger import get_logger
+
+if TYPE_CHECKING:
+    from game_automation.core.device import DeviceInfo
 
 logger = get_logger(__name__)
 
 
 def _run_adb(serial: str, *args: str, timeout: int = 10) -> bytes:
     """Run an ADB command for *serial* and return stdout bytes."""
-    cmd: List[str] = ["adb"]
+    cmd: list[str] = ["adb"]
     if serial and serial != "auto":
         cmd += ["-s", serial]
     cmd += list(args)
@@ -22,7 +25,7 @@ def _run_adb(serial: str, *args: str, timeout: int = 10) -> bytes:
     return result.stdout
 
 
-def get_device_info(serial: str) -> "game_automation.core.device.DeviceInfo":  # type: ignore[name-defined]
+def get_device_info(serial: str) -> DeviceInfo:
     """Query device properties and return a DeviceInfo instance."""
     from game_automation.core.device import DeviceInfo
 

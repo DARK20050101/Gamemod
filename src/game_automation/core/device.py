@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
-from typing import Optional
+from dataclasses import dataclass
 
 
 @dataclass
@@ -20,7 +19,7 @@ class Device:
 
     def __init__(self, serial: str = "auto") -> None:
         self.serial = serial
-        self._info: Optional[DeviceInfo] = None
+        self._info: DeviceInfo | None = None
 
     def connect(self) -> bool:
         """Establish a connection to the device. Returns True on success."""
@@ -37,10 +36,10 @@ class Device:
         self._info = None
 
     @property
-    def info(self) -> Optional[DeviceInfo]:
+    def info(self) -> DeviceInfo | None:
         return self._info
 
-    def screenshot(self) -> "bytes":
+    def screenshot(self) -> bytes:
         """Capture a screenshot and return raw PNG bytes."""
         from game_automation.utils.adb_utils import take_screenshot
 

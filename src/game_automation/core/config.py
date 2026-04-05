@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any
 
 import yaml
 from pydantic import BaseModel, Field
@@ -23,7 +23,7 @@ class AgentConfig(BaseModel):
 
 class LogConfig(BaseModel):
     level: str = "INFO"
-    file: Optional[str] = None
+    file: str | None = None
     rotation: str = "10 MB"
 
 
@@ -31,11 +31,11 @@ class AppConfig(BaseModel):
     device: DeviceConfig = Field(default_factory=DeviceConfig)
     agent: AgentConfig = Field(default_factory=AgentConfig)
     log: LogConfig = Field(default_factory=LogConfig)
-    adapters: Dict[str, Any] = Field(default_factory=dict)
-    extra: Dict[str, Any] = Field(default_factory=dict)
+    adapters: dict[str, Any] = Field(default_factory=dict)
+    extra: dict[str, Any] = Field(default_factory=dict)
 
     @classmethod
-    def from_yaml(cls, path: str) -> "AppConfig":
+    def from_yaml(cls, path: str) -> AppConfig:
         """Load configuration from a YAML file."""
         config_path = Path(path)
         if not config_path.exists():

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any
 
 import yaml
 
@@ -15,7 +15,7 @@ def ensure_dir(path: str) -> Path:
     return p
 
 
-def load_yaml(path: str) -> Dict[str, Any]:
+def load_yaml(path: str) -> dict[str, Any]:
     """Load a YAML file and return its contents as a dict."""
     p = Path(path)
     if not p.exists():
@@ -24,7 +24,7 @@ def load_yaml(path: str) -> Dict[str, Any]:
     return dict(data)
 
 
-def save_yaml(data: Dict[str, Any], path: str) -> None:
+def save_yaml(data: dict[str, Any], path: str) -> None:
     """Serialize *data* to a YAML file at *path*."""
     p = Path(path)
     p.parent.mkdir(parents=True, exist_ok=True)

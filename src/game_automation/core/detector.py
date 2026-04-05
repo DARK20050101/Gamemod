@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import List, Optional, Tuple
 
 import numpy as np
 
@@ -15,13 +14,13 @@ logger = get_logger(__name__)
 class DetectionResult:
     """Holds a single detection hit."""
 
-    def __init__(self, label: str, confidence: float, bbox: Tuple[int, int, int, int]) -> None:
+    def __init__(self, label: str, confidence: float, bbox: tuple[int, int, int, int]) -> None:
         self.label = label
         self.confidence = confidence
         # (x, y, width, height)
         self.bbox = bbox
 
-    def center(self) -> Tuple[int, int]:
+    def center(self) -> tuple[int, int]:
         x, y, w, h = self.bbox
         return (x + w // 2, y + h // 2)
 
@@ -39,7 +38,7 @@ class Detector:
         self,
         screenshot: np.ndarray,
         template_path: str,
-    ) -> Optional[DetectionResult]:
+    ) -> DetectionResult | None:
         """Return the best template match above the threshold, or None."""
         try:
             import cv2
@@ -67,7 +66,7 @@ class Detector:
         self,
         screenshot: np.ndarray,
         template_path: str,
-    ) -> List[DetectionResult]:
+    ) -> list[DetectionResult]:
         """Return all matches above the threshold."""
         try:
             import cv2
@@ -82,7 +81,7 @@ class Detector:
         h, w = template.shape[:2]
         label = Path(template_path).stem
         locations = np.where(result >= self.threshold)
-        hits: List[DetectionResult] = []
+        hits: list[DetectionResult] = []
         for pt in zip(*locations[::-1]):
             conf = float(result[pt[1], pt[0]])
             hits.append(DetectionResult(label=label, confidence=conf, bbox=(pt[0], pt[1], w, h)))

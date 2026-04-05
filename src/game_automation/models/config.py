@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel
 
 
 class ModelConfig(BaseModel):
-    detector_weights: Optional[str] = None
+    detector_weights: str | None = None
     confidence_threshold: float = 0.8
     device: str = "cpu"

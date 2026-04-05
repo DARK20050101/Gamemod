@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -22,6 +22,6 @@ class Action(BaseModel):
     model_config = ConfigDict(use_enum_values=True)
 
     action_type: ActionType
-    params: Dict[str, Any] = Field(default_factory=dict)
-    description: Optional[str] = None
-    timestamp: Optional[float] = None
+    params: dict[str, Any] = Field(default_factory=dict)
+    description: str | None = None
+    timestamp: float | None = None

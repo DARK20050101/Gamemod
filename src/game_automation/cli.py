@@ -46,8 +46,8 @@ def run(
 ) -> None:
     """Run the SupervisorAgent automation loop."""
     console.print(f"[bold magenta]Running[/] automation with config [yellow]{config}[/] on device [cyan]{device}[/]")
-    from game_automation.core.config import AppConfig
     from game_automation.agents.supervisor import SupervisorAgent
+    from game_automation.core.config import AppConfig
 
     app_config = AppConfig.from_yaml(config)
     agent = SupervisorAgent(config=app_config)

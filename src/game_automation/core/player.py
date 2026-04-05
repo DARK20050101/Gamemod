@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import time
 from pathlib import Path
-from typing import List
 
 import yaml
 
@@ -27,7 +26,7 @@ class Player:
             raise FileNotFoundError(f"Recording file not found: {path}")
 
         raw = yaml.safe_load(path.read_text()) or []
-        actions: List[Action] = [Action(**item) for item in raw]
+        actions: list[Action] = [Action(**item) for item in raw]
         logger.info(f"Playing {len(actions)} actions from {path}")
 
         for action in actions:

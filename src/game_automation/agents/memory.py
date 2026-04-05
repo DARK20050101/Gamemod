@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from collections import deque
-from typing import Any, Deque, Dict, List, Optional
 
 from game_automation.agents.base import BaseAgent
 from game_automation.core.config import AppConfig
@@ -14,14 +13,14 @@ from game_automation.models.state import GameState
 class MemoryAgent(BaseAgent):
     """Stores and retrieves game states for context-aware decision making."""
 
-    def __init__(self, config: Optional[AppConfig] = None, capacity: int = 100) -> None:
+    def __init__(self, config: AppConfig | None = None, capacity: int = 100) -> None:
         super().__init__(config=config)
-        self._buffer: Deque[GameState] = deque(maxlen=capacity)
+        self._buffer: deque[GameState] = deque(maxlen=capacity)
 
     def remember(self, state: GameState) -> None:
         self._buffer.append(state)
 
-    def recall(self, n: int = 1) -> List[GameState]:
+    def recall(self, n: int = 1) -> list[GameState]:
         """Return the *n* most recent states."""
         items = list(self._buffer)
         return items[-n:]

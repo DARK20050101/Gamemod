@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 class BaseGameAdapter(ABC):
@@ -12,8 +12,8 @@ class BaseGameAdapter(ABC):
     #: Human-readable name for this adapter.
     name: str = "base"
 
-    def __init__(self, config: Optional[Dict[str, Any]] = None) -> None:
-        self.config: Dict[str, Any] = config or {}
+    def __init__(self, config: dict[str, Any] | None = None) -> None:
+        self.config: dict[str, Any] = config or {}
 
     @abstractmethod
     def is_running(self) -> bool:

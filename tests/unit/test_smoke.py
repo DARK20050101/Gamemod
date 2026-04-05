@@ -5,8 +5,6 @@ from __future__ import annotations
 import subprocess
 import sys
 
-import pytest
-
 
 def test_import_package() -> None:
     """The package must be importable."""
@@ -29,8 +27,8 @@ def test_import_app_config() -> None:
 
 def test_import_models() -> None:
     from game_automation.models.action import Action, ActionType
-    from game_automation.models.state import GameState
     from game_automation.models.result import AgentResult, ResultStatus
+    from game_automation.models.state import GameState
 
     action = Action(action_type=ActionType.WAIT, params={"seconds": 1})
     assert action.action_type == ActionType.WAIT
@@ -71,8 +69,8 @@ def test_cli_help() -> None:
 
 def test_supervisor_agent_instantiation() -> None:
     """SupervisorAgent must instantiate without errors."""
-    from game_automation.core.config import AppConfig
     from game_automation.agents.supervisor import SupervisorAgent
+    from game_automation.core.config import AppConfig
 
     cfg = AppConfig()
     agent = SupervisorAgent(config=cfg)

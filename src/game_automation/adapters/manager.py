@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional, Type
-
 from game_automation.adapters.base import BaseGameAdapter
 from game_automation.core.logger import get_logger
 
@@ -14,15 +12,15 @@ class AdapterManager:
     """Registry for :class:`BaseGameAdapter` implementations."""
 
     def __init__(self) -> None:
-        self._registry: Dict[str, Type[BaseGameAdapter]] = {}
-        self._active: Dict[str, BaseGameAdapter] = {}
+        self._registry: dict[str, type[BaseGameAdapter]] = {}
+        self._active: dict[str, BaseGameAdapter] = {}
 
-    def register(self, adapter_cls: Type[BaseGameAdapter]) -> None:
+    def register(self, adapter_cls: type[BaseGameAdapter]) -> None:
         """Register an adapter class by its *name* attribute."""
         self._registry[adapter_cls.name] = adapter_cls
         logger.debug(f"Adapter registered: {adapter_cls.name}")
 
-    def get(self, name: str, config: Optional[dict] = None) -> BaseGameAdapter:
+    def get(self, name: str, config: dict | None = None) -> BaseGameAdapter:
         """Return an instantiated adapter by *name*, creating it if needed."""
         if name not in self._active:
             if name not in self._registry:

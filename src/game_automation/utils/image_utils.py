@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import io
-from typing import Tuple
 
 import numpy as np
 from PIL import Image
@@ -26,7 +25,7 @@ def resize(array: np.ndarray, width: int, height: int) -> np.ndarray:
     return np.array(pil)
 
 
-def crop(array: np.ndarray, bbox: Tuple[int, int, int, int]) -> np.ndarray:
+def crop(array: np.ndarray, bbox: tuple[int, int, int, int]) -> np.ndarray:
     """Crop *array* to *bbox* = (x, y, w, h)."""
     x, y, w, h = bbox
     return array[y : y + h, x : x + w]

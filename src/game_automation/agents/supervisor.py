@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from game_automation.agents.base import BaseAgent
 from game_automation.agents.decision import DecisionAgent
 from game_automation.agents.execution import ExecutionAgent
@@ -16,7 +14,7 @@ from game_automation.models.result import AgentResult, ResultStatus
 class SupervisorAgent(BaseAgent):
     """Top-level orchestrator for the agent pipeline."""
 
-    def __init__(self, config: Optional[AppConfig] = None) -> None:
+    def __init__(self, config: AppConfig | None = None) -> None:
         super().__init__(config=config)
         device = Device(serial=self.config.device.serial)
         self.perception = PerceptionAgent(config=self.config, device=device)
