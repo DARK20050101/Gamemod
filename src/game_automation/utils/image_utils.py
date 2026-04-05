@@ -21,7 +21,7 @@ def numpy_to_pil(array: np.ndarray) -> Image.Image:
 
 def resize(array: np.ndarray, width: int, height: int) -> np.ndarray:
     """Resize *array* to (width, height)."""
-    pil = numpy_to_pil(array).resize((width, height), Image.LANCZOS)
+    pil = numpy_to_pil(array).resize((width, height), Image.Resampling.LANCZOS)
     return np.array(pil)
 
 
