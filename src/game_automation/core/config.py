@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import yaml
 from pydantic import BaseModel, Field
@@ -23,7 +23,7 @@ class AgentConfig(BaseModel):
 
 class LogConfig(BaseModel):
     level: str = "INFO"
-    file: str | None = None
+    file: Optional[str] = None
     rotation: str = "10 MB"
 
 

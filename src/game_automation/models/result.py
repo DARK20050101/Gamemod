@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any
+from typing import Any, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -20,5 +20,5 @@ class AgentResult(BaseModel):
 
     status: ResultStatus
     steps_taken: int = 0
-    message: str | None = None
+    message: Optional[str] = None
     data: dict[str, Any] = Field(default_factory=dict)
