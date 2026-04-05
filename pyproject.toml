@@ -1,20 +1,22 @@
 [tool.poetry]
-name = "gamemod"
+name = "game-automation"
 version = "0.1.0"
-description = "An agent-based game automation system."
+description = "An agent-based game automation and testing framework."
 authors = ["DARK20050101 <your_email@example.com>"]
 license = "MIT"
+readme = "README.md"
+packages = [{include = "game_automation", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 opencv-python = "*"
-pydantic = "*"
+pydantic = ">=1.10,<3"
 loguru = "*"
 aiohttp = "*"
 numpy = "*"
 pillow = "*"
 pyyaml = "*"
-typer = "*"
+typer = {extras = ["all"], version = "*"}
 rich = "*"
 
 [tool.poetry.dev-dependencies]
@@ -23,3 +25,29 @@ pytest-cov = "*"
 ruff = "*"
 mypy = "*"
 pre-commit = "*"
+types-PyYAML = "*"
+
+[tool.poetry.scripts]
+game-automation = "game_automation.cli:app"
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = false
+ignore_missing_imports = true
+warn_return_any = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=src/game_automation --cov-report=term-missing"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
